@@ -78,7 +78,7 @@ public:
         consensus.nSubsidyHalvingInterval = 840000;
         consensus.BIP16Height = 218579; // 87afb798a3ad9378fcd56123c81fb31cfd9a8df4719b9774d71730c16315a092 - October 1, 2012
         consensus.BIP34Height = 710000;
-        consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
+        consensus.BIP34Hash = uint256S("00000000c7458f9253cae36ca38efc59ca1cbc8abb6747e3aca6bb95d605dfa8");//("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = 811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
@@ -87,7 +87,7 @@ public:
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 6048; // 75% of 8064
-        consensus.nMinerConfirmationWindow = 8064; // nPowTargetTimespan / nPowTargetSpacing * 4
+        consensus.nMinerConfirmationWindow = 80641539955214; // nPowTargetTimespan / nPowTargetSpacing * 4
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -103,7 +103,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000c1bfe2bbe614f41260");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x66f49ad85624c33e4fd61aa45c54012509ed4a53308908dd07f56346c7939273"); //1441280
@@ -117,20 +117,23 @@ public:
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb6;
         pchMessageStart[3] = 0xdb;
-        nDefaultPort = 9333;
+        nDefaultPort = 9966;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1539955214, 2086469405, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(2086469405, 1635609862, 0x1d00ffff, 1, 200 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("2887746c382dec3c2b7a1d82ace88b82769a1ddabb1b9843ad898d8f6f68626b"));
-        assert(genesis.hashMerkleRoot == uint256S("22ac709cdde2139f14b96f6c7e33591285e9e8c132c2560353fae369890e00d2"));
+        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+
+        printf("merkle.GetHash = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        assert(consensus.hashGenesisBlock == uint256S("39405c3ae2ab7db8c706d34680af4228928604f21481b3661972d8cb8fe839f0"));
+        assert(genesis.hashMerkleRoot == uint256S("2664f099a4e8b636091ef2c7b88e5c706bd10eca1a1c46cd207d23364078a843"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed-a.bidgold.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed.thrasher.io");
-        vSeeds.emplace_back("dnsseed.bidgoldtools.com");
-        vSeeds.emplace_back("dnsseed.bidgoldpool.org");
-        vSeeds.emplace_back("dnsseed.koin-project.com");
+        //vSeeds.emplace_back("seed-a.bidgold.loshan.co.uk");
+        //vSeeds.emplace_back("dnsseed.thrasher.io");
+        //vSeeds.emplace_back("dnsseed.bidgoldtools.com");
+        //vSeeds.emplace_back("dnsseed.bidgoldpool.org");
+        //vSeeds.emplace_back("dnsseed.koin-project.com");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -149,7 +152,7 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("2887746c382dec3c2b7a1d82ace88b82769a1ddabb1b9843ad898d8f6f68626b")},
+                {  0, uint256S("00000000c7458f9253cae36ca38efc59ca1cbc8abb6747e3aca6bb95d605dfa8")},
                 /*{  1500, uint256S("0x841a2965955dd288cfa707a755d05a54e45f8bd476835ec9af4402a2b59a2967")},
                 {  4032, uint256S("0x9ce90e427198fc0ef05e5905ce3503725b80e26afd35a987965fd7e3d9cf0846")},
                 {  8064, uint256S("0xeb984353fc5190f210651f150c40b8a4bab9eeeff0b729fcb3987da694430d70")},
@@ -178,7 +181,6 @@ public:
         };
     }
 };
-
 /**
  * Testnet (v3)
  */
