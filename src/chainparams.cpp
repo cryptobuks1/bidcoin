@@ -78,10 +78,10 @@ public:
         consensus.nSubsidyHalvingInterval = 840000;
         consensus.BIP16Height = 218579; // 87afb798a3ad9378fcd56123c81fb31cfd9a8df4719b9774d71730c16315a092 - October 1, 2012
         consensus.BIP34Height = 710000;
-        consensus.BIP34Hash = uint256S("00000000c7458f9253cae36ca38efc59ca1cbc8abb6747e3aca6bb95d605dfa8");//("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
+        consensus.BIP34Hash = uint256S("7aa2d352f6c067c57e771fadc66965c785026618fd94b6e148c71cf2affbdbcd");//("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = 811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
+        consensus.powLimit = uint256S("000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -120,12 +120,12 @@ public:
         nDefaultPort = 9966;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(2086469405, 1635609862, 0x1d00ffff, 1, 200 * COIN);
+        genesis = CreateGenesisBlock(1540934501, 1635609862, 0x1d00ffff, 1, 200 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 
         printf("merkle.GetHash = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        assert(consensus.hashGenesisBlock == uint256S("39405c3ae2ab7db8c706d34680af4228928604f21481b3661972d8cb8fe839f0"));
+        assert(consensus.hashGenesisBlock == uint256S("7aa2d352f6c067c57e771fadc66965c785026618fd94b6e148c71cf2affbdbcd"));
         assert(genesis.hashMerkleRoot == uint256S("2664f099a4e8b636091ef2c7b88e5c706bd10eca1a1c46cd207d23364078a843"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
@@ -152,7 +152,7 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("00000000c7458f9253cae36ca38efc59ca1cbc8abb6747e3aca6bb95d605dfa8")},
+                {  0, uint256S("7aa2d352f6c067c57e771fadc66965c785026618fd94b6e148c71cf2affbdbcd")},
                 /*{  1500, uint256S("0x841a2965955dd288cfa707a755d05a54e45f8bd476835ec9af4402a2b59a2967")},
                 {  4032, uint256S("0x9ce90e427198fc0ef05e5905ce3503725b80e26afd35a987965fd7e3d9cf0846")},
                 {  8064, uint256S("0xeb984353fc5190f210651f150c40b8a4bab9eeeff0b729fcb3987da694430d70")},
@@ -174,7 +174,7 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 59c9b9d3fec105bdc716d84caa7579503d5b05b73618d0bf2d5fa639f780a011 (height 1353397).
-            1539955214, // * UNIX timestamp of last known number of transactions
+            1540934501, // * UNIX timestamp of last known number of transactions
             0,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0     // * estimated number of transactions per second after that timestamp
